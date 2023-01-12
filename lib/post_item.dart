@@ -126,21 +126,22 @@ class EnterPost extends StatelessWidget {
                   ///Blog
 
                   ElevatedButton(
-                      onPressed: () {
-                        print(
-                            '${blogPostController.initialDate.value},nnnnnnnnnnnnnnnn');
-                        blogPostController.imageBlog(
+                      onPressed: () async {
+                        ///Querying categories
+                        await blogPostController.getCategories();
+
+                        await blogPostController.imageBlog(
                           platform: "BlogImage",
                         );
-                        /* blogPostController.getUserToken();*/
+                        print("Ty better next time");
 
-                        ///Displays a notification to the seller
-                        /*blogPostController.sendNotification(
-                            title: blogPostController.selectedItem.value
-                                .toString(),
-                            body:
-                                '${blogPostController.selectedItem.value.toString()} updated',
-                            token: blogPostController.token);*/
+                        ///Adding Category
+                        if (blogPostController.itemsCatego
+                            .contains(blogPostController.category)) {
+                          print("Try better next time");
+                        } else {
+                          blogPostController.categories();
+                        }
                       },
                       style: TextButton.styleFrom(
                           padding: const EdgeInsets.symmetric(

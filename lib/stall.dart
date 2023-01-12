@@ -15,7 +15,7 @@ class BoughtView extends StatefulWidget {
 
 class _BoughtViewState extends State<BoughtView> {
   final blogPostController = Get.put(BlogPostController());
-
+  final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -31,6 +31,110 @@ class _BoughtViewState extends State<BoughtView> {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               )),
             ),
+            StreamBuilder<QuerySnapshot>(
+                stream: _fireStore.collection("Categories").snapshots(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.active) {
+                    if (!snapshot.hasData) {
+                      return const Center(
+                        child: Text("Check your connection"),
+                      );
+                    } else {
+                      if (snapshot.hasData) {
+                        return Container(
+                          height: 80,
+                          width: Get.width,
+                          child: ListView.builder(
+                            padding: EdgeInsets.only(left: 10, right: 10),
+                            scrollDirection: Axis.horizontal,
+                            itemCount: snapshot.data?.size,
+                            itemBuilder: (BuildContext context, int index) {
+                              final categories =
+                                  snapshot.data?.docs[index]['Item'];
+                              return Row(
+                                children: [
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        //TODO
+                                        blogPostController.item.value =
+                                            categories;
+                                      });
+                                    },
+                                    /* child: Container(
+                              height: 30,
+                              width: 90,
+                              child: ChoiceChip(
+                                  label: Text(categories.toString(),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 17)),
+                                  selectedColor: Colors.blue,
+                                  selected: _isSelected,
+                                  onSelected: (newBoolValue) {
+                                    setState(() {
+                                      return _isSelected = newBoolValue;
+                                    });
+                                  }),
+                            ),*/
+                                    child: Container(
+                                      height: Get.height * .06,
+                                      width: Get.width * .3,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(
+                                            left: Get.width * .01,
+                                            right: Get.width * .01),
+                                        child: Center(
+                                            child: Text(categories.toString(),
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 17))),
+                                      ),
+                                      decoration: BoxDecoration(
+                                          color: Colors.blue,
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
+                        );
+                      }
+                    }
+                    return Text("Loading....");
+                  } else {
+                    return Container(
+                        height: 80,
+                        width: Get.width,
+                        child: ListView.builder(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 6,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Row(
+                              children: [
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Container(
+                                  height: Get.height * .06,
+                                  width: Get.width * .3,
+                                  decoration: BoxDecoration(
+                                      color: Colors.grey[400],
+                                      borderRadius: BorderRadius.circular(20)),
+                                ),
+                              ],
+                            );
+                          },
+                        ));
+                  }
+                }),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(top: 10, left: 20, bottom: 10),

@@ -1,10 +1,8 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 
 class BlogPostController extends GetxController {
@@ -131,6 +129,53 @@ class BlogPostController extends GetxController {
         fieldLabelText: 'DOB');
     if (newDate != null && newDate != initialDate.value) {
       initialDate.value = newDate;
+    }
+  }
+
+  List itemsCatego = [].obs;
+  var items = "".obs;
+  var item = ''.obs;
+  Future getCategories() async {
+    itemsCatego.clear();
+    try {
+      await FirebaseFirestore.instance
+          .collection("Categories")
+          .get()
+          .then((QuerySnapshot querySnapshot) {
+        if (querySnapshot.docs.isNotEmpty) {
+          querySnapshot.docs.forEach((doc) {
+            items.value = doc['Item'];
+            itemsCatego.add(items.value);
+          });
+        } else {
+          print("No data");
+          return;
+        }
+      });
+    } on FirebaseException catch (e) {
+      Get.snackbar(
+        "Error Adding User Info",
+        e.message.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> categories() async {
+    try {
+      await _fireStore.collection("Categories").doc().set({
+        'Item': category,
+      });
+    } on FirebaseException catch (e) {
+      Get.snackbar(
+        "Error Adding User Info",
+        e.message.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    } catch (e) {
+      rethrow;
     }
   }
 
