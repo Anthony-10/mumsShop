@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import 'controller.dart';
 
@@ -52,8 +53,12 @@ class _BoughtViewState extends State<BoughtView> {
                                 physics: const BouncingScrollPhysics(),
                                 itemCount: snapshot.data?.size,
                                 itemBuilder: (context, index) {
+                                  var dateTime = snapshot
+                                      .data!.docs[index]['Date']
+                                      .toDate();
                                   return SizedBox(
                                     height: 150,
+                                    width: Get.width,
                                     child: SingleChildScrollView(
                                       scrollDirection: Axis.horizontal,
                                       child: Card(
@@ -113,6 +118,14 @@ class _BoughtViewState extends State<BoughtView> {
                                                     height: 10,
                                                   ),
                                                   Text(
+                                                    'InitialPrice: ${snapshot.data?.docs[index]['initialPrice'].toString()}',
+                                                    style:
+                                                        TextStyle(fontSize: 15),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  Text(
                                                     'Price: ${snapshot.data?.docs[index]['Price'].toString()}',
                                                     style:
                                                         TextStyle(fontSize: 15),
@@ -120,24 +133,17 @@ class _BoughtViewState extends State<BoughtView> {
                                                   const SizedBox(
                                                     height: 10,
                                                   ),
-                                                  Text(
-                                                    'initialPrice: ${snapshot.data?.docs[index]['initialPrice'].toString()}',
-                                                    style:
-                                                        TextStyle(fontSize: 15),
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 10,
-                                                  ),
+
                                                   /* Text(
                                                       'Amount: ${snapshot.data?.docs[index]['amount'].toString()}'),
                                                   const SizedBox(
                                                     height: 10,
                                                   ),*/
                                                   Text(
-                                                    'Date: ${snapshot.data?.docs[index]['Date'].toString()}',
+                                                    "Date: ${DateFormat('yyyy-MM-dd KK:mm').format(dateTime)}",
                                                     style:
                                                         TextStyle(fontSize: 15),
-                                                  ),
+                                                  )
                                                 ],
                                               )
                                             ],
