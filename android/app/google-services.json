@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "138949162187",
+    "project_id": "mumsshop-375a7",
+    "storage_bucket": "mumsshop-375a7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:138949162187:android:5aa86fb3d51f2e09b2974e",
+        "android_client_info": {
+          "package_name": "com.example.untitled6"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "138949162187-0ah10hd7pcqkaj425lg82v8ki8s6lj03.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsMvG1fbXahAD1D6kSio8gVMAdt4FhoA4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "138949162187-0ah10hd7pcqkaj425lg82v8ki8s6lj03.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
