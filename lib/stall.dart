@@ -24,10 +24,10 @@ class _BoughtViewState extends State<BoughtView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 30, left: 100, bottom: 20),
+              padding: const EdgeInsets.only(top: 30, left: 100, bottom: 20),
               child: Container(
                   child: const Text(
-                'Bought',
+                'Items',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               )),
             ),
@@ -102,7 +102,7 @@ class _BoughtViewState extends State<BoughtView> {
                                                   ),
                                                 ),
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 20,
                                               ),
                                               Column(
@@ -111,24 +111,24 @@ class _BoughtViewState extends State<BoughtView> {
                                                 children: [
                                                   Text(
                                                     'Categories: ${snapshot.data?.docs[index]['Categories'].toString()}',
-                                                    style:
-                                                        TextStyle(fontSize: 15),
+                                                    style: const TextStyle(
+                                                        fontSize: 15),
                                                   ),
                                                   const SizedBox(
                                                     height: 10,
                                                   ),
                                                   Text(
                                                     'InitialPrice: ${snapshot.data?.docs[index]['initialPrice'].toString()}',
-                                                    style:
-                                                        TextStyle(fontSize: 15),
+                                                    style: const TextStyle(
+                                                        fontSize: 15),
                                                   ),
                                                   const SizedBox(
                                                     height: 10,
                                                   ),
                                                   Text(
                                                     'Price: ${snapshot.data?.docs[index]['Price'].toString()}',
-                                                    style:
-                                                        TextStyle(fontSize: 15),
+                                                    style: const TextStyle(
+                                                        fontSize: 15),
                                                   ),
                                                   const SizedBox(
                                                     height: 10,
@@ -141,8 +141,8 @@ class _BoughtViewState extends State<BoughtView> {
                                                   ),*/
                                                   Text(
                                                     "Date: ${DateFormat('yyyy-MM-dd KK:mm').format(dateTime)}",
-                                                    style:
-                                                        TextStyle(fontSize: 15),
+                                                    style: const TextStyle(
+                                                        fontSize: 15),
                                                   )
                                                 ],
                                               )
