@@ -127,17 +127,23 @@ class EnterPost extends StatelessWidget {
 
                   ElevatedButton(
                       onPressed: () async {
+                        print(
+                            "Ty better next timelllllllllllllllllllllllllllllllllllll");
+
                         ///Querying categories
                         await blogPostController.getCategories();
-
+                        print(
+                            "${blogPostController.itemsCatego},aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                        print(
+                            "Ty better next timemmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
                         await blogPostController.imageBlog(
                           platform: "BlogImage",
                         );
-                        print("Ty better next time");
+                        print("Ty better next timeoooooooooooooooooooooo");
 
                         ///Adding Category
                         if (blogPostController.itemsCatego
-                            .contains(blogPostController.category)) {
+                            .contains(blogPostController.category.text)) {
                           print("Try better next time");
                         } else {
                           blogPostController.categories();
