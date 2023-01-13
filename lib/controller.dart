@@ -20,6 +20,7 @@ class BlogPostController extends GetxController {
   final TextEditingController itemPrice = TextEditingController();
   final TextEditingController initialPrice = TextEditingController();
   final TextEditingController category = TextEditingController();
+  final TextEditingController amount = TextEditingController();
 
   /*getImageGallery() async {
     image.clear();
@@ -102,6 +103,7 @@ class BlogPostController extends GetxController {
         'Categories': category.text,
         'Price': itemPrice.text,
         'initialPrice': initialPrice.text,
+        'Amount': amount.text,
         'Date': initialDate.value,
       });
       print('${initialDate.value},ggggggggggggggggggg');

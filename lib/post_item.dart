@@ -94,6 +94,20 @@ class EnterPost extends StatelessWidget {
                     controller: blogPostController.initialPrice,
                   ),
 
+                  SizedBox(
+                    height: Get.height * 0.02,
+                  ),
+
+                  ///Amount
+                  TextFormField(
+                    key: const ValueKey("Amount"),
+                    textAlign: TextAlign.start,
+                    decoration: const InputDecoration(
+                      labelText: "Amount",
+                    ),
+                    controller: blogPostController.amount,
+                  ),
+
                   const SizedBox(
                     height: 50.0,
                   ),
