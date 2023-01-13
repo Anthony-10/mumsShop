@@ -12,7 +12,7 @@ class BottomNavigation extends StatefulWidget {
 
 class _BottomNavigationState extends State<BottomNavigation> {
   int currentIndex = 0;
-  final screens = [EnterPost(), const BoughtView(), const Sold()];
+  final screens = [EnterPost(), const BoughtView(), Sold()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

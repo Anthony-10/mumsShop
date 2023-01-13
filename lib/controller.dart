@@ -164,7 +164,6 @@ class BlogPostController extends GetxController {
   }
 
   Future<void> categories() async {
-    print("categories,vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
     try {
       await _fireStore.collection("Categories").doc().set({
         'Item': category.text,
@@ -180,76 +179,29 @@ class BlogPostController extends GetxController {
     }
   }
 
-  /*Future<void> sendNotification(
-      {required String title,
-      required String token,
-      required String body}) async {
-    print('sendNotification>>>>>>>>>>>>>>>>>>>>>>>>>');
-    final data = {
-      'click_action': 'FLUTTER_NOTIFICATION_CLICK',
-      'id': '1',
-      'message': title,
-    };
-    try {
-      http.Response response =
-          await http.post(Uri.parse('https://fcm.googleapis.com/fcm/send'),
-              headers: <String, String>{
-                'Content-Type': 'application/json',
-                'Authorization':
-                    'key=BBk0HHIFASeUu4WRT50EAHWohuQVw49Trt_0SqAb8zvagowgB66rpa7hfDOp_x6l90jxrM7pdQSw9x_Gy0PyxVI'
-              },
-              body: jsonEncode(<String, dynamic>{
-                'notification': <String, dynamic>{'title': title, 'body': body},
-                'priority': 'high',
-                'data': data,
-                'to': token
-              }));
-      print(
-          '${response.statusCode}>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
-      if (response.statusCode == 200) {
-        print('your notification is send');
-      } else {
-        print('Error');
-      }
-    } catch (e) {
-      print(e);
-    }
-  }*/
+  var itemCategory;
+  var itemItemPrice;
+  var itemInitialPrice;
+  var itemUrl;
 
-  /*var token;
-  final listImage = [].obs;
-  Future<void> getUserToken() async {
-    print('getUserToken,>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
-    final uuid = FirebaseAuth.instance.currentUser?.uid;
+  Future<void> soldItems() async {
     try {
-      FirebaseFirestore.instance
-          .collection("NotificationToken")
-          */ /*.where('id', isEqualTo: uuid)*/ /*
-          .get()
-          .then((QuerySnapshot querySnapshot) {
-        if (querySnapshot.docs.isNotEmpty) {
-          querySnapshot.docs.forEach((doc) {
-            token = doc['token'];
-            sendNotification(
-                title: selectedItem.value.toString(),
-                body: '${selectedItem.value.toString()} updated',
-                token: token);
-            */ /*listImage.add(token);*/ /*
-
-            print('$listImage,44444444444444444444444444444444444444');
-          });
-        } else {
-          print('<<<<<<<<<<No data>>>>>>>>>>>');
-        }
+      await _fireStore.collection("SoldItems").doc().set({
+        'Url': itemUrl,
+        'Categories': itemCategory,
+        'Price': itemItemPrice,
+        'initialPrice': itemInitialPrice,
+        'Date': DateTime.now(),
       });
+      print('${initialDate.value},ggggggggggggggggggg');
     } on FirebaseException catch (e) {
       Get.snackbar(
-        "Error Adding User Token",
+        "Error Adding Post",
         e.message.toString(),
         snackPosition: SnackPosition.BOTTOM,
       );
     } catch (e) {
       rethrow;
     }
-  }*/
+  }
 }

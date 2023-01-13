@@ -46,7 +46,7 @@ class _BoughtViewState extends State<BoughtView> {
                           height: 80,
                           width: Get.width,
                           child: ListView.builder(
-                            padding: EdgeInsets.only(left: 10, right: 10),
+                            padding: const EdgeInsets.only(left: 10, right: 10),
                             scrollDirection: Axis.horizontal,
                             itemCount: snapshot.data?.size,
                             itemBuilder: (BuildContext context, int index) {
@@ -54,7 +54,7 @@ class _BoughtViewState extends State<BoughtView> {
                                   snapshot.data?.docs[index]['Item'];
                               return Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   GestureDetector(
@@ -65,22 +65,6 @@ class _BoughtViewState extends State<BoughtView> {
                                             categories;
                                       });
                                     },
-                                    /* child: Container(
-                              height: 30,
-                              width: 90,
-                              child: ChoiceChip(
-                                  label: Text(categories.toString(),
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 17)),
-                                  selectedColor: Colors.blue,
-                                  selected: _isSelected,
-                                  onSelected: (newBoolValue) {
-                                    setState(() {
-                                      return _isSelected = newBoolValue;
-                                    });
-                                  }),
-                            ),*/
                                     child: Container(
                                       height: Get.height * .06,
                                       width: Get.width * .3,
@@ -90,7 +74,7 @@ class _BoughtViewState extends State<BoughtView> {
                                             right: Get.width * .01),
                                         child: Center(
                                             child: Text(categories.toString(),
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: 17))),
                                       ),
@@ -107,19 +91,19 @@ class _BoughtViewState extends State<BoughtView> {
                         );
                       }
                     }
-                    return Text("Loading....");
+                    return const Text("Loading....");
                   } else {
                     return Container(
                         height: 80,
                         width: Get.width,
                         child: ListView.builder(
-                          padding: EdgeInsets.only(left: 10, right: 10),
+                          padding: const EdgeInsets.only(left: 10, right: 10),
                           scrollDirection: Axis.horizontal,
                           itemCount: 6,
                           itemBuilder: (BuildContext context, int index) {
                             return Row(
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 Container(
@@ -135,142 +119,185 @@ class _BoughtViewState extends State<BoughtView> {
                         ));
                   }
                 }),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 10, left: 20, bottom: 10),
-                child: StreamBuilder<QuerySnapshot>(
-                    stream: FirebaseFirestore.instance
-                        .collection("ShopItems")
-                        /*.where("Categories",
-                            isEqualTo: blogPostController.itemCategories.value)*/
-                        .snapshots(),
-                    builder: (BuildContext context,
-                        AsyncSnapshot<QuerySnapshot> snapshot) {
-                      if (snapshot.connectionState == ConnectionState.active) {
-                        if (!snapshot.hasData) {
-                          return const Center(
-                            child: Text("Check your connection"),
-                          );
-                        } else {
-                          if (snapshot.hasData) {
-                            return ListView.builder(
-                                physics: const BouncingScrollPhysics(),
-                                itemCount: snapshot.data?.size,
-                                itemBuilder: (context, index) {
-                                  var dateTime = snapshot
-                                      .data!.docs[index]['Date']
-                                      .toDate();
-                                  return SizedBox(
-                                    height: 150,
-                                    width: Get.width,
-                                    child: SingleChildScrollView(
-                                      scrollDirection: Axis.horizontal,
-                                      child: Card(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(9.0),
-                                          child: Row(
-                                            children: [
-                                              SizedBox(
-                                                height: 120,
-                                                width: 100,
-                                                child: Card(
-                                                  child: CachedNetworkImage(
-                                                    /*cacheManager: buyController
-                                                        .customCacheManager,*/
-                                                    imageUrl: snapshot.data
-                                                        ?.docs[index]['Url'],
-                                                    fit: BoxFit.fill,
-                                                    placeholder:
-                                                        (context, url) =>
-                                                            Container(
-                                                      color: Colors.black12,
-                                                    ),
-                                                    errorWidget:
-                                                        (context, url, error) =>
-                                                            Container(
-                                                      color: Colors.black12,
-                                                      child: const Icon(
-                                                          Icons.error,
-                                                          color: Colors.red),
-                                                    ),
-                                                  ),
-                                                  semanticContainer: true,
-                                                  clipBehavior: Clip
-                                                      .antiAliasWithSaveLayer,
-                                                  elevation: 20.0,
-                                                  color: Colors.white,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.0),
-                                                  ),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                width: 20,
-                                              ),
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    'Categories: ${snapshot.data?.docs[index]['Categories'].toString()}',
-                                                    style: const TextStyle(
-                                                        fontSize: 15),
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 10,
-                                                  ),
-                                                  Text(
-                                                    'InitialPrice: ${snapshot.data?.docs[index]['initialPrice'].toString()}',
-                                                    style: const TextStyle(
-                                                        fontSize: 15),
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 10,
-                                                  ),
-                                                  Text(
-                                                    'Price: ${snapshot.data?.docs[index]['Price'].toString()}',
-                                                    style: const TextStyle(
-                                                        fontSize: 15),
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 10,
-                                                  ),
+            Obx(
+              () => Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 20, bottom: 10),
+                  child: StreamBuilder<QuerySnapshot>(
+                      stream: FirebaseFirestore.instance
+                          .collection("ShopItems")
+                          .where("Categories",
+                              isEqualTo: blogPostController.item.value)
+                          .snapshots(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.active) {
+                          if (!snapshot.hasData) {
+                            return const Center(
+                              child: Text("Check your connection"),
+                            );
+                          } else {
+                            if (snapshot.hasData) {
+                              return ListView.builder(
+                                  physics: const BouncingScrollPhysics(),
+                                  itemCount: snapshot.data?.size,
+                                  itemBuilder: (context, index) {
+                                    var dateTime = snapshot
+                                        .data!.docs[index]['Date']
+                                        .toDate();
+                                    return GestureDetector(
+                                      onTap: () {
+                                        showDialog(
+                                            context: context,
+                                            builder: (context) => AlertDialog(
+                                                  title: const Text("Sold"),
+                                                  content: displydItems(
+                                                      snapshot,
+                                                      index,
+                                                      dateTime),
+                                                  actions: [
+                                                    ElevatedButton(
+                                                        onPressed: () {
+                                                          blogPostController
+                                                                  .itemCategory =
+                                                              snapshot
+                                                                  .data
+                                                                  ?.docs[index][
+                                                                      'Categories']
+                                                                  .toString();
+                                                          blogPostController
+                                                                  .itemItemPrice =
+                                                              snapshot
+                                                                  .data
+                                                                  ?.docs[index]
+                                                                      ['Price']
+                                                                  .toString();
+                                                          blogPostController
+                                                                  .itemInitialPrice =
+                                                              snapshot
+                                                                  .data
+                                                                  ?.docs[index][
+                                                                      'initialPrice']
+                                                                  .toString();
+                                                          blogPostController
+                                                                  .itemUrl =
+                                                              snapshot.data
+                                                                      ?.docs[
+                                                                  index]['Url'];
 
-                                                  /* Text(
-                                                      'Amount: ${snapshot.data?.docs[index]['amount'].toString()}'),
-                                                  const SizedBox(
-                                                    height: 10,
-                                                  ),*/
-                                                  Text(
-                                                    "Date: ${DateFormat('yyyy-MM-dd KK:mm').format(dateTime)}",
-                                                    style: const TextStyle(
-                                                        fontSize: 15),
-                                                  )
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                });
+                                                          blogPostController
+                                                              .soldItems();
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child:
+                                                            const Text("Sold"))
+                                                  ],
+                                                ));
+                                        /*Get.defaultDialog(
+                                            title: "sold",
+                                            radius: 80,
+                                            onConfirm: () {},
+                                            confirm: Text("Sold"));*/
+                                      },
+                                      child: displydItems(
+                                          snapshot, index, dateTime),
+                                    );
+                                  });
+                            }
                           }
+                          return const Text('Loading....');
+                        } else {
+                          return const Text('Loading....');
                         }
-                        return const Text('Loading....');
-                      } else {
-                        return const Text('Loading....');
-                      }
-                    }),
+                      }),
+                ),
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  SizedBox displydItems(
+      AsyncSnapshot<QuerySnapshot<Object?>> snapshot, int index, dateTime) {
+    return SizedBox(
+      height: 150,
+      width: Get.width,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(9.0),
+            child: Row(
+              children: [
+                SizedBox(
+                  height: 120,
+                  width: 100,
+                  child: Card(
+                    child: CachedNetworkImage(
+                      /*cacheManager: buyController
+                                                          .customCacheManager,*/
+                      imageUrl: snapshot.data?.docs[index]['Url'],
+                      fit: BoxFit.fill,
+                      placeholder: (context, url) => Container(
+                        color: Colors.black12,
+                      ),
+                      errorWidget: (context, url, error) => Container(
+                        color: Colors.black12,
+                        child: const Icon(Icons.error, color: Colors.red),
+                      ),
+                    ),
+                    semanticContainer: true,
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    elevation: 20.0,
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Categories: ${snapshot.data?.docs[index]['Categories'].toString()}',
+                      style: const TextStyle(fontSize: 15),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'InitialPrice: ${snapshot.data?.docs[index]['initialPrice'].toString()}',
+                      style: const TextStyle(fontSize: 15),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Price: ${snapshot.data?.docs[index]['Price'].toString()}',
+                      style: const TextStyle(fontSize: 15),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "Date: ${DateFormat('yyyy-MM-dd KK:mm').format(dateTime)}",
+                      style: const TextStyle(fontSize: 15),
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
         ),
       ),
     );
