@@ -167,6 +167,13 @@ class _BoughtViewState extends State<BoughtView> {
                                                                       'Categories']
                                                                   .toString();
                                                           blogPostController
+                                                                  .itemAmount =
+                                                              snapshot
+                                                                  .data
+                                                                  ?.docs[index]
+                                                                      ['Amount']
+                                                                  .toString();
+                                                          blogPostController
                                                                   .itemItemPrice =
                                                               snapshot
                                                                   .data
@@ -224,7 +231,7 @@ class _BoughtViewState extends State<BoughtView> {
   SizedBox displydItems(
       AsyncSnapshot<QuerySnapshot<Object?>> snapshot, int index, dateTime) {
     return SizedBox(
-      height: 150,
+      height: 180,
       width: Get.width,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
@@ -281,6 +288,13 @@ class _BoughtViewState extends State<BoughtView> {
                     ),
                     Text(
                       'Price: ${snapshot.data?.docs[index]['Price'].toString()}',
+                      style: const TextStyle(fontSize: 15),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Amount: ${snapshot.data?.docs[index]['Amount'].toString()}',
                       style: const TextStyle(fontSize: 15),
                     ),
                     const SizedBox(

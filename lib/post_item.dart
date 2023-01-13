@@ -40,8 +40,8 @@ class EnterPost extends StatelessWidget {
                   Container(
                     color: Colors.white,
                     constraints: const BoxConstraints(
-                        maxHeight: 300,
-                        minHeight: 200,
+                        maxHeight: 400,
+                        minHeight: 300,
                         maxWidth: 400,
                         minWidth: 300),
                     child: Obx(

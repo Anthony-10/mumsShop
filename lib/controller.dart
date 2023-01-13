@@ -185,6 +185,7 @@ class BlogPostController extends GetxController {
   var itemItemPrice;
   var itemInitialPrice;
   var itemUrl;
+  var itemAmount;
 
   Future<void> soldItems() async {
     try {
