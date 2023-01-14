@@ -11,6 +11,9 @@ class BlogPostController extends GetxController {
   List fileURLList = [];
   var fileURL = "";
 
+  int counter = 1;
+  var min = 2;
+
   final initialDate = DateTime.now().obs;
 
   var itemCategories = "thamos".obs;
@@ -94,10 +97,8 @@ class BlogPostController extends GetxController {
     }
   }
 
-  int color = 0;
   Future<void> postBlog({required var url}) async {
     try {
-      print('${initialDate.value},jjjjjjjjjjjjjjjjjjj');
       await _fireStore.collection("ShopItems").doc().set({
         'Url': url,
         'Categories': category.text,
@@ -106,7 +107,6 @@ class BlogPostController extends GetxController {
         'Amount': amount.text,
         'Date': initialDate.value,
       });
-      print('${initialDate.value},ggggggggggggggggggg');
     } on FirebaseException catch (e) {
       Get.snackbar(
         "Error Adding Post",
@@ -186,6 +186,7 @@ class BlogPostController extends GetxController {
   var itemInitialPrice;
   var itemUrl;
   var itemAmount;
+  var itemDate;
 
   Future<void> soldItems() async {
     try {
@@ -194,6 +195,7 @@ class BlogPostController extends GetxController {
         'Categories': itemCategory,
         'Price': itemItemPrice,
         'initialPrice': itemInitialPrice,
+        'Amount': counter,
         'Date': DateTime.now(),
       });
       print('${initialDate.value},ggggggggggggggggggg');
@@ -206,5 +208,33 @@ class BlogPostController extends GetxController {
     } catch (e) {
       rethrow;
     }
+  }
+
+  var itemsCategories;
+  var itemsPrice;
+  var itemsInitialPrice;
+  var itemsAmount;
+  var itemsUrl;
+  var itemsDate;
+
+  Future<void> getShopItems() async {
+    FirebaseFirestore.instance
+        .collection("ShopItems")
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      if (querySnapshot.docs.isNotEmpty) {
+        querySnapshot.docs.forEach((doc) {
+          itemsCategories.value = doc['Categories'];
+          itemsPrice.value = doc['Price'];
+          itemsInitialPrice.value = doc['initialPrice'];
+          itemsAmount.value = doc['Amount'];
+          itemsUrl.value = doc['Url'];
+          itemsDate.value = doc['Date'];
+        });
+      } else {
+        print(
+            'there is no data,llllllllllllllllllllllllllllllllllllllllllllllll');
+      }
+    });
   }
 }

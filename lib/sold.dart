@@ -13,13 +13,12 @@ class Sold extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 30, left: 100, bottom: 20),
-            child: Container(
-                child: const Text(
+          const Padding(
+            padding: EdgeInsets.only(top: 30, left: 100, bottom: 20),
+            child: Text(
               'SoldItems',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-            )),
+            ),
           ),
           Expanded(
             child: Padding(
@@ -44,7 +43,7 @@ class Sold extends StatelessWidget {
                                 var dateTime =
                                     snapshot.data!.docs[index]['Date'].toDate();
                                 return SizedBox(
-                                  height: 150,
+                                  height: 170,
                                   width: Get.width,
                                   child: SingleChildScrollView(
                                     scrollDirection: Axis.horizontal,
@@ -113,6 +112,14 @@ class Sold extends StatelessWidget {
                                                 ),
                                                 Text(
                                                   'Price: ${snapshot.data?.docs[index]['Price'].toString()}',
+                                                  style: const TextStyle(
+                                                      fontSize: 15),
+                                                ),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  'Amount: ${snapshot.data?.docs[index]['Amount'].toString()}',
                                                   style: const TextStyle(
                                                       fontSize: 15),
                                                 ),
