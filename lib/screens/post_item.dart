@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
-import 'constants.dart';
-import 'controller.dart';
+import '../constants.dart';
+import '../controller.dart';
 
 class EnterPost extends StatelessWidget {
   EnterPost({Key? key}) : super(key: key);

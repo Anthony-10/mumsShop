@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:untitled6/post_item.dart';
-import 'package:untitled6/sold.dart';
-import 'package:untitled6/soldOut.dart';
-import 'package:untitled6/stall.dart';
+import 'package:untitled6/screens/post_item.dart';
+import 'package:untitled6/screens/sold.dart';
+import 'package:untitled6/screens/soldOut.dart';
+import 'package:untitled6/screens/stall.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({Key? key}) : super(key: key);

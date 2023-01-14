@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import 'alertDialogs.dart';
-import 'categories.dart';
-import 'controller.dart';
+import '../components/alertDialogs.dart';
+import '../components/categories.dart';
+import '../controller.dart';
 
 class BoughtView extends StatefulWidget {
   const BoughtView({Key? key}) : super(key: key);
