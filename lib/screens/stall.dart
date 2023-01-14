@@ -18,6 +18,15 @@ class BoughtView extends StatefulWidget {
 class _BoughtViewState extends State<BoughtView> {
   final blogPostController = Get.put(BlogPostController());
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    blogPostController
+        .getCategories()
+        .then((value) => blogPostController.firstCategories());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -39,6 +48,8 @@ class _BoughtViewState extends State<BoughtView> {
                   child: StreamBuilder<QuerySnapshot>(
                       stream: FirebaseFirestore.instance
                           .collection("ShopItems")
+                          /* .where("Amount",
+                              isNotEqualTo: blogPostController.currentNumber)*/
                           .where("Categories",
                               isEqualTo: blogPostController.item.value)
                           .snapshots(),

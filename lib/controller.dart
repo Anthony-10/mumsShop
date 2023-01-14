@@ -14,6 +14,7 @@ class BlogPostController extends GetxController {
   int counter = 1;
   var min = 2;
   var id;
+  int currentNumber = 0;
 
   final initialDate = DateTime.now().obs;
 
@@ -25,6 +26,14 @@ class BlogPostController extends GetxController {
   final TextEditingController initialPrice = TextEditingController();
   final TextEditingController category = TextEditingController();
   final TextEditingController amount = TextEditingController();
+
+  void firstCategories() {
+    if (itemsCatego.isNotEmpty) {
+      item.value = itemsCatego[0];
+    } else {
+      return;
+    }
+  }
 
   /*getImageGallery() async {
     image.clear();
