@@ -160,6 +160,7 @@ class _AlertDialogsState extends State<AlertDialogs> {
             ElevatedButton(
                 onPressed: () {
                   blogPostController.soldItems();
+                  blogPostController.updateItems();
                   Navigator.pop(context);
                 },
                 child: const Text("Sold")),

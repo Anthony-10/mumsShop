@@ -13,6 +13,7 @@ class BlogPostController extends GetxController {
 
   int counter = 1;
   var min = 2;
+  var id;
 
   final initialDate = DateTime.now().obs;
 
@@ -99,13 +100,14 @@ class BlogPostController extends GetxController {
 
   Future<void> postBlog({required var url}) async {
     try {
-      await _fireStore.collection("ShopItems").doc().set({
+      await _fireStore.collection("ShopItems").doc(id).set({
         'Url': url,
         'Categories': category.text,
         'Price': itemPrice.text,
         'initialPrice': initialPrice.text,
         'Amount': amount.text,
         'Date': initialDate.value,
+        'Id': id,
       });
     } on FirebaseException catch (e) {
       Get.snackbar(
@@ -216,6 +218,7 @@ class BlogPostController extends GetxController {
   var itemsAmount;
   var itemsUrl;
   var itemsDate;
+  var itemsId;
 
   Future<void> getShopItems() async {
     FirebaseFirestore.instance
@@ -224,17 +227,45 @@ class BlogPostController extends GetxController {
         .then((QuerySnapshot querySnapshot) {
       if (querySnapshot.docs.isNotEmpty) {
         querySnapshot.docs.forEach((doc) {
-          itemsCategories.value = doc['Categories'];
-          itemsPrice.value = doc['Price'];
-          itemsInitialPrice.value = doc['initialPrice'];
-          itemsAmount.value = doc['Amount'];
-          itemsUrl.value = doc['Url'];
-          itemsDate.value = doc['Date'];
+          itemsCategories = doc['Categories'];
+          itemsPrice = doc['Price'];
+          itemsInitialPrice = doc['initialPrice'];
+          itemsAmount = doc['Amount'];
+          itemsUrl = doc['Url'];
+          itemsDate = doc['Date'];
+          itemsId = doc['Id'];
         });
       } else {
         print(
             'there is no data,llllllllllllllllllllllllllllllllllllllllllllllll');
       }
     });
+  }
+
+  int exactAmount = 0;
+  Future<void> updateItems() async {
+    print(
+        "lllllllllllllllllllllllllllllllllllllll$itemsAmount,$counter$itemsUrl,$itemsCategories,$itemsPrice,$itemsInitialPrice,$exactAmount,$itemsDate");
+    exactAmount = itemsAmount - counter;
+    print("ppppppppppppppppppppppppppppppppppppppppppp$exactAmount");
+    try {
+      await _fireStore.collection("ShopItems").doc(itemsId).update({
+        'Url': itemsUrl,
+        'Categories': itemsCategories,
+        'Price': itemsPrice,
+        'initialPrice': itemsInitialPrice,
+        'Amount': exactAmount,
+        'Date': itemsDate,
+      });
+      print('${initialDate.value},ggggggggggggggggggg');
+    } on FirebaseException catch (e) {
+      Get.snackbar(
+        "Error Adding Post",
+        e.message.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 }

@@ -26,6 +26,7 @@ class Sold extends StatelessWidget {
               child: StreamBuilder<QuerySnapshot>(
                   stream: FirebaseFirestore.instance
                       .collection("SoldItems")
+                      .orderBy('Date')
                       .snapshots(),
                   builder: (BuildContext context,
                       AsyncSnapshot<QuerySnapshot> snapshot) {

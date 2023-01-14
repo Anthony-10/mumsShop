@@ -60,7 +60,11 @@ class _BoughtViewState extends State<BoughtView> {
                                         .data!.docs[index]['Date']
                                         .toDate();
                                     return GestureDetector(
-                                        onTap: () {
+                                        onTap: () async {
+                                          ///getShopItems Method
+                                          await blogPostController
+                                              .getShopItems();
+
                                           blogPostController.itemUrl =
                                               snapshot.data?.docs[index]['Url'];
                                           blogPostController.itemCategory =

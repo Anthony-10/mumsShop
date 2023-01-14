@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uuid/uuid.dart';
 
 import 'constants.dart';
 import 'controller.dart';
@@ -8,6 +9,7 @@ class EnterPost extends StatelessWidget {
   EnterPost({Key? key}) : super(key: key);
 
   final blogPostController = Get.put(BlogPostController());
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -74,6 +76,7 @@ class EnterPost extends StatelessWidget {
                   TextFormField(
                     key: const ValueKey("price"),
                     textAlign: TextAlign.start,
+                    keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       labelText: "Price",
                     ),
@@ -84,10 +87,11 @@ class EnterPost extends StatelessWidget {
                     height: Get.height * 0.02,
                   ),
 
-                  ///Category
+                  ///initialPrice
                   TextFormField(
                     key: const ValueKey("initialPrice"),
                     textAlign: TextAlign.start,
+                    keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       labelText: "InitialPrice",
                     ),
@@ -102,6 +106,7 @@ class EnterPost extends StatelessWidget {
                   TextFormField(
                     key: const ValueKey("Amount"),
                     textAlign: TextAlign.start,
+                    keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       labelText: "Amount",
                     ),
@@ -141,6 +146,8 @@ class EnterPost extends StatelessWidget {
 
                   ElevatedButton(
                       onPressed: () async {
+                        const uuid = Uuid();
+                        blogPostController.id = uuid.v1();
                         print(
                             "Ty better next timelllllllllllllllllllllllllllllllllllll");
 

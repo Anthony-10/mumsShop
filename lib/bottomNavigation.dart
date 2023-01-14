@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled6/post_item.dart';
 import 'package:untitled6/sold.dart';
+import 'package:untitled6/soldOut.dart';
 import 'package:untitled6/stall.dart';
 
 class BottomNavigation extends StatefulWidget {
@@ -12,7 +13,12 @@ class BottomNavigation extends StatefulWidget {
 
 class _BottomNavigationState extends State<BottomNavigation> {
   int currentIndex = 0;
-  final screens = [EnterPost(), const BoughtView(), const Sold()];
+  final screens = [
+    EnterPost(),
+    const BoughtView(),
+    const Sold(),
+    const SoldOut()
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +40,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
           BottomNavigationBarItem(
               icon: Icon(Icons.chat),
               label: "Sold",
-              backgroundColor: Colors.red)
+              backgroundColor: Colors.amber),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.chat),
+              label: "SoldOut",
+              backgroundColor: Colors.deepPurple)
         ],
       ),
     );
