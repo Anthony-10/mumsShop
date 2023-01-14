@@ -62,7 +62,9 @@ class _CategoriesState extends State<Categories> {
                                             fontSize: 17))),
                               ),
                               decoration: BoxDecoration(
-                                  color: Colors.blue,
+                                  border: Border.all(
+                                    color: Colors.black,
+                                  ),
                                   borderRadius: BorderRadius.circular(20)),
                             ),
                           ),
