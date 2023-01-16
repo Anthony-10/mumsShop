@@ -149,6 +149,7 @@ class BlogPostController extends GetxController {
   var items = "".obs;
   var item = ''.obs;
   Future getCategories() async {
+    print("getCategories,8888888888888888888");
     itemsCatego.clear();
     try {
       await FirebaseFirestore.instance

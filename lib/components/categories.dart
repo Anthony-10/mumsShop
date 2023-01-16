@@ -49,12 +49,11 @@ class _CategoriesState extends State<Categories> {
                               });
                             },
                             child: Container(
-                              height: Get.height * .06,
-                              width: Get.width * .3,
+                              height: 80,
+                              width: 120,
                               child: Padding(
-                                padding: EdgeInsets.only(
-                                    left: Get.width * .01,
-                                    right: Get.width * .01),
+                                padding: const EdgeInsets.only(
+                                    top: 5, bottom: 5, left: 20, right: 20),
                                 child: Center(
                                     child: Text(categories.toString(),
                                         style: const TextStyle(
@@ -91,8 +90,8 @@ class _CategoriesState extends State<Categories> {
                           width: 10,
                         ),
                         Container(
-                          height: Get.height * .06,
-                          width: Get.width * .3,
+                          height: 80,
+                          width: 120,
                           decoration: BoxDecoration(
                               color: Colors.grey[400],
                               borderRadius: BorderRadius.circular(20)),

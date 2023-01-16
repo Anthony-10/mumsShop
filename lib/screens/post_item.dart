@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
@@ -5,10 +6,28 @@ import 'package:uuid/uuid.dart';
 import '../constants.dart';
 import '../controller.dart';
 
-class EnterPost extends StatelessWidget {
+class EnterPost extends StatefulWidget {
   EnterPost({Key? key}) : super(key: key);
 
+  @override
+  State<EnterPost> createState() => _EnterPostState();
+}
+
+class _EnterPostState extends State<EnterPost> {
   final blogPostController = Get.put(BlogPostController());
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    blogPostController.getCategories().then((value) =>
+        print("${blogPostController.itemsCatego},kkkkkkkkkkkkklllllllllll"));
+
+    /*FirebaseMessaging.onMessage.listen((event) {
+      print('FCM message received');
+    });*/
+  }
+
+  var selectedCategory;
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +79,24 @@ class EnterPost extends StatelessWidget {
                   ),
 
                   ///Category
+
+                  /* SizedBox(
+                      height: 100,
+                      width: 300,
+                      child: DropdownButton(
+                          value: selectedCategory,
+                          items: blogPostController.itemsCatego
+                              .map((item) => DropdownMenuItem(
+                                    child: Text(
+                                      item,
+                                      style: const TextStyle(fontSize: 24),
+                                    ),
+                                    value: item,
+                                  ))
+                              .toList(),
+                          onChanged: (item) =>
+                              setState(() => selectedCategory = item))),*/
+
                   TextFormField(
                     key: const ValueKey("category"),
                     textAlign: TextAlign.start,
