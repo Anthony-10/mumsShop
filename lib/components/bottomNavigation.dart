@@ -4,6 +4,8 @@ import 'package:untitled6/screens/sold.dart';
 import 'package:untitled6/screens/soldOut.dart';
 import 'package:untitled6/screens/stall.dart';
 
+import '../screens/SearchItem.dart';
+
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({Key? key}) : super(key: key);
 
@@ -17,7 +19,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
     EnterPost(),
     const BoughtView(),
     const Sold(),
-    const SoldOut()
+    const SoldOut(),
+    const SreachItem(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -44,7 +47,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
           BottomNavigationBarItem(
               icon: Icon(Icons.chat),
               label: "SoldOut",
-              backgroundColor: Colors.deepPurple)
+              backgroundColor: Colors.deepPurple),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              label: "Search",
+              backgroundColor: Colors.green)
         ],
       ),
     );
