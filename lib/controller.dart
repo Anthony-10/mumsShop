@@ -26,6 +26,7 @@ class BlogPostController extends GetxController {
   final TextEditingController initialPrice = TextEditingController();
   final TextEditingController category = TextEditingController();
   final TextEditingController amount = TextEditingController();
+  final TextEditingController searchItem = TextEditingController();
 
   void firstCategories() {
     if (itemsCatego.isNotEmpty) {
@@ -231,7 +232,7 @@ class BlogPostController extends GetxController {
   var itemsId;
 
   Future<void> getShopItems() async {
-    FirebaseFirestore.instance
+    await FirebaseFirestore.instance
         .collection("ShopItems")
         .get()
         .then((QuerySnapshot querySnapshot) {
@@ -252,20 +253,21 @@ class BlogPostController extends GetxController {
     });
   }
 
+  var itemId = "";
   int exactAmount = 0;
   Future<void> updateItems() async {
     print(
-        "lllllllllllllllllllllllllllllllllllllll$itemsAmount,$counter$itemsUrl,$itemsCategories,$itemsPrice,$itemsInitialPrice,$exactAmount,$itemsDate");
-    exactAmount = itemsAmount - counter;
-    print("ppppppppppppppppppppppppppppppppppppppppppp$exactAmount");
+        "lllllllllllllllllllllllllllllllllllllll,$itemAmount,$counter$itemUrl,$itemCategories,$itemsPrice,$itemsInitialPrice,$exactAmount,$itemsDate");
+    exactAmount = int.parse(itemAmount) - counter;
+    print("ppppppppppppppppppppppppppppppppppppppppppp$exactAmount,$itemId");
     try {
-      await _fireStore.collection("ShopItems").doc(itemsId).update({
-        'Url': itemsUrl,
-        'Categories': itemsCategories,
-        'Price': itemsPrice,
-        'initialPrice': itemsInitialPrice,
+      await _fireStore.collection("ShopItems").doc(itemId).update({
+        'Url': itemUrl,
+        'Categories': itemCategory,
+        'Price': itemItemPrice,
+        'initialPrice': itemInitialPrice,
         'Amount': exactAmount,
-        'Date': itemsDate,
+        'Date': itemDate,
       });
       print('${initialDate.value},ggggggggggggggggggg');
     } on FirebaseException catch (e) {

@@ -94,9 +94,14 @@ class _BoughtViewState extends State<BoughtView> {
                                               snapshot
                                                   .data?.docs[index]['Amount']
                                                   .toString();
-                                          blogPostController.itemDate =
-                                              DateFormat('yyyy-MM-dd KK:mm')
-                                                  .format(dateTime);
+                                          print(
+                                              ">>>>>>>>>>>>>>${blogPostController.itemAmount}");
+                                          blogPostController.itemDate = snapshot
+                                              .data!.docs[index]['Date'];
+                                          blogPostController.itemId =
+                                              snapshot.data?.docs[index]['Id'];
+                                          print(
+                                              ">>>>>>>>>>>>>>${blogPostController.itemAmount},${blogPostController.itemCategory}");
                                           showDialog(
                                               context: context,
                                               builder: (context) =>

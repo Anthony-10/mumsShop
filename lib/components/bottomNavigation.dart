@@ -20,7 +20,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     const BoughtView(),
     const Sold(),
     const SoldOut(),
-    const SreachItem(),
+    SreachItem(),
   ];
   @override
   Widget build(BuildContext context) {
