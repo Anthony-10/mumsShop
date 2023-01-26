@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../components/alertDialogs.dart';
 import '../controller.dart';
 
 class SreachItem extends StatelessWidget {
@@ -30,17 +31,23 @@ class SreachItem extends StatelessWidget {
               key: const ValueKey("searchItem"),
               textAlign: TextAlign.start,
               decoration: InputDecoration(
-                prefixIcon: IconButton(
+                icon: IconButton(
                   onPressed: () {
                     itemSearch.value =
                         blogPostController.searchItem.text.trim();
                     print("${itemSearch.value},oooooooooooooooooooooooooooooo");
                   },
-                  icon: const Icon(Icons.search),
+                  icon: const Icon(
+                    Icons.search,
+                    size: 30,
+                  ),
                 ),
                 labelText: "Search",
               ),
               controller: blogPostController.searchItem,
+            ),
+            SizedBox(
+              height: 20,
             ),
             Obx(
               () => Expanded(
@@ -119,48 +126,110 @@ class SreachItem extends StatelessWidget {
                                                 const SizedBox(
                                                   width: 20,
                                                 ),
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      'Categories: ${snapshot.data?.docs[index]['Categories'].toString()}',
-                                                      style: const TextStyle(
-                                                          fontSize: 15),
-                                                    ),
-                                                    const SizedBox(
-                                                      height: 10,
-                                                    ),
-                                                    Text(
-                                                      'InitialPrice: ${snapshot.data?.docs[index]['initialPrice'].toString()}',
-                                                      style: const TextStyle(
-                                                          fontSize: 15),
-                                                    ),
-                                                    const SizedBox(
-                                                      height: 10,
-                                                    ),
-                                                    Text(
-                                                      'Price: ${snapshot.data?.docs[index]['Price'].toString()}',
-                                                      style: const TextStyle(
-                                                          fontSize: 15),
-                                                    ),
-                                                    const SizedBox(
-                                                      height: 10,
-                                                    ),
-                                                    Text(
-                                                      'Amount: ${snapshot.data?.docs[index]['Amount'].toString()}',
-                                                      style: const TextStyle(
-                                                          fontSize: 15),
-                                                    ),
-                                                    const SizedBox(
-                                                      height: 10,
-                                                    ),
-                                                    Text(
-                                                      "Date: ${DateFormat('yyyy-MM-dd KK:mm').format(dateTime)}",
-                                                      style: const TextStyle(
-                                                          fontSize: 15),
-                                                    )
-                                                  ],
+                                                GestureDetector(
+                                                  onTap: () async {
+                                                    blogPostController.itemUrl =
+                                                        snapshot.data
+                                                                ?.docs[index]
+                                                            ['Url'];
+                                                    blogPostController
+                                                            .itemSubCategory =
+                                                        snapshot.data
+                                                                ?.docs[index]
+                                                            ['subCategory'];
+                                                    blogPostController
+                                                            .itemCategory =
+                                                        snapshot
+                                                            .data
+                                                            ?.docs[index]
+                                                                ['Categories']
+                                                            .toString();
+
+                                                    blogPostController
+                                                            .itemSize =
+                                                        snapshot
+                                                            .data
+                                                            ?.docs[index]
+                                                                ['Size']
+                                                            .toString();
+
+                                                    blogPostController
+                                                            .itemInitialPrice =
+                                                        snapshot
+                                                            .data
+                                                            ?.docs[index]
+                                                                ['initialPrice']
+                                                            .toString();
+                                                    blogPostController
+                                                            .itemItemPrice =
+                                                        snapshot
+                                                            .data
+                                                            ?.docs[index]
+                                                                ['Price']
+                                                            .toString();
+                                                    blogPostController
+                                                            .itemAmount =
+                                                        snapshot
+                                                            .data
+                                                            ?.docs[index]
+                                                                ['Amount']
+                                                            .toString();
+                                                    blogPostController
+                                                        .itemDate = snapshot
+                                                            .data!.docs[index]
+                                                        ['Date'];
+                                                    blogPostController.itemId =
+                                                        snapshot.data
+                                                            ?.docs[index]['Id'];
+                                                    showDialog(
+                                                        context: context,
+                                                        builder: (context) =>
+                                                            const AlertDialogs());
+                                                  },
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        'Categories: ${snapshot.data?.docs[index]['Categories'].toString()}',
+                                                        style: const TextStyle(
+                                                            fontSize: 15),
+                                                      ),
+                                                      const SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Text(
+                                                        'InitialPrice: ${snapshot.data?.docs[index]['initialPrice'].toString()}',
+                                                        style: const TextStyle(
+                                                            fontSize: 15),
+                                                      ),
+                                                      const SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Text(
+                                                        'Price: ${snapshot.data?.docs[index]['Price'].toString()}',
+                                                        style: const TextStyle(
+                                                            fontSize: 15),
+                                                      ),
+                                                      const SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Text(
+                                                        'Amount: ${snapshot.data?.docs[index]['Amount'].toString()}',
+                                                        style: const TextStyle(
+                                                            fontSize: 15),
+                                                      ),
+                                                      const SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Text(
+                                                        "Date: ${DateFormat('yyyy-MM-dd KK:mm').format(dateTime)}",
+                                                        style: const TextStyle(
+                                                            fontSize: 15),
+                                                      )
+                                                    ],
+                                                  ),
                                                 )
                                               ],
                                             ),

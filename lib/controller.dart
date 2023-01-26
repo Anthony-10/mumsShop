@@ -18,8 +18,6 @@ class BlogPostController extends GetxController {
 
   final initialDate = DateTime.now().obs;
 
-  var itemCategories = "thamos".obs;
-
   final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
 
   final TextEditingController itemPrice = TextEditingController();

@@ -80,6 +80,46 @@ class _BoughtViewState extends State<BoughtView> {
                                             padding: const EdgeInsets.all(9.0),
                                             child: Row(
                                               children: [
+                                                SizedBox(
+                                                  height: 160,
+                                                  width: 140,
+                                                  child: Card(
+                                                    child: CachedNetworkImage(
+                                                      /*cacheManager: buyController
+                                                      .customCacheManager,*/
+                                                      imageUrl: snapshot.data
+                                                          ?.docs[index]['Url'],
+                                                      fit: BoxFit.fill,
+                                                      placeholder:
+                                                          (context, url) =>
+                                                              Container(
+                                                        color: Colors.black12,
+                                                      ),
+                                                      errorWidget: (context,
+                                                              url, error) =>
+                                                          Container(
+                                                        color: Colors.black12,
+                                                        child: const Icon(
+                                                            Icons.error,
+                                                            color: Colors.red),
+                                                      ),
+                                                    ),
+                                                    semanticContainer: true,
+                                                    clipBehavior: Clip
+                                                        .antiAliasWithSaveLayer,
+                                                    elevation: 20.0,
+                                                    color: Colors.white,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  width: 20,
+                                                ),
                                                 GestureDetector(
                                                   onTap: () async {
                                                     blogPostController.itemUrl =
@@ -139,75 +179,6 @@ class _BoughtViewState extends State<BoughtView> {
                                                         context: context,
                                                         builder: (context) =>
                                                             const AlertDialogs());
-                                                  },
-                                                  child: SizedBox(
-                                                    height: 160,
-                                                    width: 140,
-                                                    child: Card(
-                                                      child: CachedNetworkImage(
-                                                        /*cacheManager: buyController
-                                                        .customCacheManager,*/
-                                                        imageUrl: snapshot.data
-                                                                ?.docs[index]
-                                                            ['Url'],
-                                                        fit: BoxFit.fill,
-                                                        placeholder:
-                                                            (context, url) =>
-                                                                Container(
-                                                          color: Colors.black12,
-                                                        ),
-                                                        errorWidget: (context,
-                                                                url, error) =>
-                                                            Container(
-                                                          color: Colors.black12,
-                                                          child: const Icon(
-                                                              Icons.error,
-                                                              color:
-                                                                  Colors.red),
-                                                        ),
-                                                      ),
-                                                      semanticContainer: true,
-                                                      clipBehavior: Clip
-                                                          .antiAliasWithSaveLayer,
-                                                      elevation: 20.0,
-                                                      color: Colors.white,
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10.0),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  width: 20,
-                                                ),
-                                                GestureDetector(
-                                                  onTap: () {
-                                                    showDialog(
-                                                        context: context,
-                                                        builder: (context) =>
-                                                            AlertDialog(
-                                                              title: const Text(
-                                                                  'Edit'),
-                                                              content:
-                                                                  TextFormField(
-                                                                key: const ValueKey(
-                                                                    "category"),
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .start,
-                                                                decoration:
-                                                                    const InputDecoration(
-                                                                  labelText:
-                                                                      "Category",
-                                                                ),
-                                                                controller:
-                                                                    blogPostController
-                                                                        .category,
-                                                              ),
-                                                            ));
                                                   },
                                                   child: Column(
                                                     crossAxisAlignment:
