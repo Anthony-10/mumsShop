@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../components/ImageDialog.dart';
 import '../controller.dart';
 
 class SoldOut extends StatefulWidget {
@@ -67,36 +68,49 @@ class _SoldOutState extends State<SoldOut> {
                                               SizedBox(
                                                 height: 120,
                                                 width: 100,
-                                                child: Card(
-                                                  child: CachedNetworkImage(
-                                                    /*cacheManager: buyController
-                                                            .customCacheManager,*/
-                                                    imageUrl: snapshot.data
-                                                        ?.docs[index]['Url'],
-                                                    fit: BoxFit.fill,
-                                                    placeholder:
-                                                        (context, url) =>
-                                                            Container(
-                                                      color: Colors.black12,
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    blogPostController.itemUrl =
+                                                        snapshot.data
+                                                                ?.docs[index]
+                                                            ['Url'];
+                                                    showDialog(
+                                                        context: context,
+                                                        builder: (context) =>
+                                                            ImageDialog());
+                                                  },
+                                                  child: Card(
+                                                    child: CachedNetworkImage(
+                                                      /*cacheManager: buyController
+                                                              .customCacheManager,*/
+                                                      imageUrl: snapshot.data
+                                                          ?.docs[index]['Url'],
+                                                      fit: BoxFit.fill,
+                                                      placeholder:
+                                                          (context, url) =>
+                                                              Container(
+                                                        color: Colors.black12,
+                                                      ),
+                                                      errorWidget: (context,
+                                                              url, error) =>
+                                                          Container(
+                                                        color: Colors.black12,
+                                                        child: const Icon(
+                                                            Icons.error,
+                                                            color: Colors.red),
+                                                      ),
                                                     ),
-                                                    errorWidget:
-                                                        (context, url, error) =>
-                                                            Container(
-                                                      color: Colors.black12,
-                                                      child: const Icon(
-                                                          Icons.error,
-                                                          color: Colors.red),
+                                                    semanticContainer: true,
+                                                    clipBehavior: Clip
+                                                        .antiAliasWithSaveLayer,
+                                                    elevation: 20.0,
+                                                    color: Colors.white,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
                                                     ),
-                                                  ),
-                                                  semanticContainer: true,
-                                                  clipBehavior: Clip
-                                                      .antiAliasWithSaveLayer,
-                                                  elevation: 20.0,
-                                                  color: Colors.white,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.0),
                                                   ),
                                                 ),
                                               ),

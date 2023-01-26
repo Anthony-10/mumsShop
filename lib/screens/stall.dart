@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../components/ImageDialog.dart';
 import '../components/alertDialogs.dart';
 import '../components/categories.dart';
 import '../controller.dart';
@@ -83,37 +84,51 @@ class _BoughtViewState extends State<BoughtView> {
                                                 SizedBox(
                                                   height: 160,
                                                   width: 140,
-                                                  child: Card(
-                                                    child: CachedNetworkImage(
-                                                      /*cacheManager: buyController
-                                                      .customCacheManager,*/
-                                                      imageUrl: snapshot.data
-                                                          ?.docs[index]['Url'],
-                                                      fit: BoxFit.fill,
-                                                      placeholder:
-                                                          (context, url) =>
-                                                              Container(
-                                                        color: Colors.black12,
+                                                  child: GestureDetector(
+                                                    onTap: () {
+                                                      blogPostController
+                                                          .itemUrl = snapshot
+                                                              .data?.docs[index]
+                                                          ['Url'];
+                                                      showDialog(
+                                                          context: context,
+                                                          builder: (context) =>
+                                                              ImageDialog());
+                                                    },
+                                                    child: Card(
+                                                      child: CachedNetworkImage(
+                                                        /*cacheManager: buyController
+                                                        .customCacheManager,*/
+                                                        imageUrl: snapshot.data
+                                                                ?.docs[index]
+                                                            ['Url'],
+                                                        fit: BoxFit.fill,
+                                                        placeholder:
+                                                            (context, url) =>
+                                                                Container(
+                                                          color: Colors.black12,
+                                                        ),
+                                                        errorWidget: (context,
+                                                                url, error) =>
+                                                            Container(
+                                                          color: Colors.black12,
+                                                          child: const Icon(
+                                                              Icons.error,
+                                                              color:
+                                                                  Colors.red),
+                                                        ),
                                                       ),
-                                                      errorWidget: (context,
-                                                              url, error) =>
-                                                          Container(
-                                                        color: Colors.black12,
-                                                        child: const Icon(
-                                                            Icons.error,
-                                                            color: Colors.red),
+                                                      semanticContainer: true,
+                                                      clipBehavior: Clip
+                                                          .antiAliasWithSaveLayer,
+                                                      elevation: 20.0,
+                                                      color: Colors.white,
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10.0),
                                                       ),
-                                                    ),
-                                                    semanticContainer: true,
-                                                    clipBehavior: Clip
-                                                        .antiAliasWithSaveLayer,
-                                                    elevation: 20.0,
-                                                    color: Colors.white,
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
                                                     ),
                                                   ),
                                                 ),
@@ -169,9 +184,10 @@ class _BoughtViewState extends State<BoughtView> {
                                                                 ['Amount']
                                                             .toString();
                                                     blogPostController
-                                                        .itemDate = snapshot
-                                                            .data!.docs[index]
-                                                        ['Date'];
+                                                            .itemDate =
+                                                        snapshot.data!
+                                                            .docs[index]['Date']
+                                                            .toDate();
                                                     blogPostController.itemId =
                                                         snapshot.data
                                                             ?.docs[index]['Id'];
@@ -194,7 +210,7 @@ class _BoughtViewState extends State<BoughtView> {
                                                         height: 10,
                                                       ),
                                                       Text(
-                                                        'subCategory: ${snapshot.data?.docs[index]['subCategory'].toString()}',
+                                                        'SubCategory: ${snapshot.data?.docs[index]['subCategory'].toString()}',
                                                         style: const TextStyle(
                                                             fontSize: 15),
                                                       ),

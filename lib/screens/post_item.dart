@@ -113,7 +113,7 @@ class _EnterPostState extends State<EnterPost> {
                     key: const ValueKey("subCategory"),
                     textAlign: TextAlign.start,
                     decoration: const InputDecoration(
-                      labelText: "subCategory",
+                      labelText: "Sub Category",
                     ),
                     controller: blogPostController.subCategory,
                   ),
@@ -125,11 +125,14 @@ class _EnterPostState extends State<EnterPost> {
                   TextFormField(
                     key: const ValueKey("size"),
                     textAlign: TextAlign.start,
-                    keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       labelText: "Size",
                     ),
                     controller: blogPostController.size,
+                  ),
+
+                  SizedBox(
+                    height: Get.height * 0.02,
                   ),
 
                   ///Prize

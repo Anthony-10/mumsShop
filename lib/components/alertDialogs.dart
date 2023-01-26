@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../controller.dart';
 
@@ -89,7 +90,7 @@ class _AlertDialogsState extends State<AlertDialogs> {
                         height: 10,
                       ),
                       Text(
-                        "Date: ${blogPostController.itemDate}",
+                        "Date: ${DateFormat('yyyy-MM-dd KK:mm').format(blogPostController.itemDate)}",
                         style: const TextStyle(fontSize: 15),
                       )
                     ],

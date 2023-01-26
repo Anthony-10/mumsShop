@@ -4,8 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../components/ImageDialog.dart';
+import '../controller.dart';
+
 class Sold extends StatelessWidget {
   Sold({Key? key}) : super(key: key);
+
+  final blogPostController = Get.put(BlogPostController());
 
   final nowsDate = DateTime.now();
   var dateNow;
@@ -95,36 +100,49 @@ class Sold extends StatelessWidget {
                                               SizedBox(
                                                 height: 120,
                                                 width: 100,
-                                                child: Card(
-                                                  child: CachedNetworkImage(
-                                                    /*cacheManager: buyController
-                                                              .customCacheManager,*/
-                                                    imageUrl: snapshot.data
-                                                        ?.docs[index]['Url'],
-                                                    fit: BoxFit.fill,
-                                                    placeholder:
-                                                        (context, url) =>
-                                                            Container(
-                                                      color: Colors.black12,
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    blogPostController.itemUrl =
+                                                        snapshot.data
+                                                                ?.docs[index]
+                                                            ['Url'];
+                                                    showDialog(
+                                                        context: context,
+                                                        builder: (context) =>
+                                                            ImageDialog());
+                                                  },
+                                                  child: Card(
+                                                    child: CachedNetworkImage(
+                                                      /*cacheManager: buyController
+                                                                .customCacheManager,*/
+                                                      imageUrl: snapshot.data
+                                                          ?.docs[index]['Url'],
+                                                      fit: BoxFit.fill,
+                                                      placeholder:
+                                                          (context, url) =>
+                                                              Container(
+                                                        color: Colors.black12,
+                                                      ),
+                                                      errorWidget: (context,
+                                                              url, error) =>
+                                                          Container(
+                                                        color: Colors.black12,
+                                                        child: const Icon(
+                                                            Icons.error,
+                                                            color: Colors.red),
+                                                      ),
                                                     ),
-                                                    errorWidget:
-                                                        (context, url, error) =>
-                                                            Container(
-                                                      color: Colors.black12,
-                                                      child: const Icon(
-                                                          Icons.error,
-                                                          color: Colors.red),
+                                                    semanticContainer: true,
+                                                    clipBehavior: Clip
+                                                        .antiAliasWithSaveLayer,
+                                                    elevation: 20.0,
+                                                    color: Colors.white,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
                                                     ),
-                                                  ),
-                                                  semanticContainer: true,
-                                                  clipBehavior: Clip
-                                                      .antiAliasWithSaveLayer,
-                                                  elevation: 20.0,
-                                                  color: Colors.white,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.0),
                                                   ),
                                                 ),
                                               ),
@@ -144,6 +162,14 @@ class Sold extends StatelessWidget {
                                                     height: 10,
                                                   ),
                                                   Text(
+                                                    'SubCategory: ${snapshot.data?.docs[index]['subCategory'].toString()}',
+                                                    style: const TextStyle(
+                                                        fontSize: 15),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  Text(
                                                     'InitialPrice: ${snapshot.data?.docs[index]['initialPrice'].toString()}',
                                                     style: const TextStyle(
                                                         fontSize: 15),
@@ -153,6 +179,14 @@ class Sold extends StatelessWidget {
                                                   ),
                                                   Text(
                                                     'Price: ${snapshot.data?.docs[index]['Price'].toString()}',
+                                                    style: const TextStyle(
+                                                        fontSize: 15),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  Text(
+                                                    'Size: ${snapshot.data?.docs[index]['Size'].toString()}',
                                                     style: const TextStyle(
                                                         fontSize: 15),
                                                   ),
