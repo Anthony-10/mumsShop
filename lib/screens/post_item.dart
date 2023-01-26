@@ -1,4 +1,3 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
@@ -107,6 +106,30 @@ class _EnterPostState extends State<EnterPost> {
                   ),
                   SizedBox(
                     height: Get.height * 0.02,
+                  ),
+
+                  ///subCategory
+                  TextFormField(
+                    key: const ValueKey("subCategory"),
+                    textAlign: TextAlign.start,
+                    decoration: const InputDecoration(
+                      labelText: "subCategory",
+                    ),
+                    controller: blogPostController.subCategory,
+                  ),
+                  SizedBox(
+                    height: Get.height * 0.02,
+                  ),
+
+                  ///Size
+                  TextFormField(
+                    key: const ValueKey("size"),
+                    textAlign: TextAlign.start,
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      labelText: "Size",
+                    ),
+                    controller: blogPostController.size,
                   ),
 
                   ///Prize

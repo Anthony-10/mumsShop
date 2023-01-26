@@ -25,8 +25,10 @@ class BlogPostController extends GetxController {
   final TextEditingController itemPrice = TextEditingController();
   final TextEditingController initialPrice = TextEditingController();
   final TextEditingController category = TextEditingController();
+  final TextEditingController subCategory = TextEditingController();
   final TextEditingController amount = TextEditingController();
   final TextEditingController searchItem = TextEditingController();
+  final TextEditingController size = TextEditingController();
 
   void firstCategories() {
     if (itemsCatego.isNotEmpty) {
@@ -113,7 +115,9 @@ class BlogPostController extends GetxController {
       await _fireStore.collection("ShopItems").doc(id).set({
         'Url': url,
         'Categories': category.text,
+        'subCategory': subCategory.text,
         'Price': itemPrice.text,
+        'Size': size.text,
         'initialPrice': initialPrice.text,
         'Amount': amount.text,
         'Date': initialDate.value,
@@ -195,18 +199,22 @@ class BlogPostController extends GetxController {
   }
 
   var itemCategory;
+  var itemSubCategory;
   var itemItemPrice;
   var itemInitialPrice;
   var itemUrl;
   var itemAmount;
   var itemDate;
+  var itemSize;
 
   Future<void> soldItems() async {
     try {
       await _fireStore.collection("SoldItems").doc().set({
         'Url': itemUrl,
         'Categories': itemCategory,
+        'subCategory': itemSubCategory,
         'Price': itemItemPrice,
+        'Size': itemSize,
         'initialPrice': itemInitialPrice,
         'Amount': counter,
         'Date': DateTime.now(),

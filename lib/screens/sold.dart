@@ -5,8 +5,10 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class Sold extends StatelessWidget {
-  const Sold({Key? key}) : super(key: key);
+  Sold({Key? key}) : super(key: key);
 
+  final nowsDate = DateTime.now();
+  var dateNow;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -21,13 +23,50 @@ class Sold extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    /*dateNow =
+                        print('$dateNow,llllllllllll');*/
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 100,
+                    child: Center(
+                        child: Text(
+                            "${DateFormat('yyyy-MM-dd').format(nowsDate)}")),
+                    color: Colors.amber,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    height: 40,
+                    width: 100,
+                    child: Center(
+                        child:
+                            Text("${DateFormat('yyyy-MM').format(nowsDate)}")),
+                    color: Colors.amber,
+                  ),
+                ),
+                /*TextButton(
+                    onPressed: () {},
+                    child:
+                        Text("${DateFormat('yyyy-MM-dd').format(nowsDate)}")),
+                TextButton(
+                    onPressed: () {},
+                    child: Text("${DateFormat('yyyy-MM').format(nowsDate)}"))*/
+              ],
+            ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(top: 10, left: 20, bottom: 10),
                 child: StreamBuilder<QuerySnapshot>(
                     stream: FirebaseFirestore.instance
                         .collection("SoldItems")
-                        .orderBy('Date')
+                        .where('Date', isLessThanOrEqualTo: DateTime.now())
                         .snapshots(),
                     builder: (BuildContext context,
                         AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -61,7 +100,7 @@ class Sold extends StatelessWidget {
                                                 child: Card(
                                                   child: CachedNetworkImage(
                                                     /*cacheManager: buyController
-                                                            .customCacheManager,*/
+                                                              .customCacheManager,*/
                                                     imageUrl: snapshot.data
                                                         ?.docs[index]['Url'],
                                                     fit: BoxFit.fill,

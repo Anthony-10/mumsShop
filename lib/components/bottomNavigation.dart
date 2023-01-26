@@ -18,7 +18,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   final screens = [
     EnterPost(),
     const BoughtView(),
-    const Sold(),
+    Sold(),
     const SoldOut(),
     SreachItem(),
   ];
