@@ -35,8 +35,7 @@ class Sold extends StatelessWidget {
                     height: 40,
                     width: 100,
                     child: Center(
-                        child: Text(
-                            "${DateFormat('yyyy-MM-dd').format(nowsDate)}")),
+                        child: Text(DateFormat('yyyy-MM-dd').format(nowsDate))),
                     color: Colors.amber,
                   ),
                 ),
@@ -46,8 +45,7 @@ class Sold extends StatelessWidget {
                     height: 40,
                     width: 100,
                     child: Center(
-                        child:
-                            Text("${DateFormat('yyyy-MM').format(nowsDate)}")),
+                        child: Text(DateFormat('yyyy-MM').format(nowsDate))),
                     color: Colors.amber,
                   ),
                 ),

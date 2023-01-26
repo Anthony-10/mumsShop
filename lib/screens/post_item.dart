@@ -217,7 +217,7 @@ class _EnterPostState extends State<EnterPost> {
                             "${blogPostController.itemsCatego},aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                         print(
                             "Ty better next timemmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
-                        await blogPostController.imageBlog(
+                        await blogPostController.imageItem(
                           platform: "BlogImage",
                         );
                         print("Ty better next timeoooooooooooooooooooooo");

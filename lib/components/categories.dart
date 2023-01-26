@@ -27,7 +27,7 @@ class _CategoriesState extends State<Categories> {
               );
             } else {
               if (snapshot.hasData) {
-                return Container(
+                return SizedBox(
                   height: 80,
                   width: Get.width,
                   child: ListView.builder(
@@ -76,7 +76,7 @@ class _CategoriesState extends State<Categories> {
             }
             return const Text("Loading....");
           } else {
-            return Container(
+            return SizedBox(
                 height: 80,
                 width: Get.width,
                 child: ListView.builder(

@@ -116,6 +116,14 @@ class _SoldOutState extends State<SoldOut> {
                                                     height: 10,
                                                   ),
                                                   Text(
+                                                    'subCategory: ${snapshot.data?.docs[index]['subCategory'].toString()}',
+                                                    style: const TextStyle(
+                                                        fontSize: 15),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  Text(
                                                     'InitialPrice: ${snapshot.data?.docs[index]['initialPrice'].toString()}',
                                                     style: const TextStyle(
                                                         fontSize: 15),
@@ -125,6 +133,14 @@ class _SoldOutState extends State<SoldOut> {
                                                   ),
                                                   Text(
                                                     'Price: ${snapshot.data?.docs[index]['Price'].toString()}',
+                                                    style: const TextStyle(
+                                                        fontSize: 15),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  Text(
+                                                    'Size: ${snapshot.data?.docs[index]['Size'].toString()}',
                                                     style: const TextStyle(
                                                         fontSize: 15),
                                                   ),

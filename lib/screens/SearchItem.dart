@@ -10,6 +10,7 @@ class SreachItem extends StatelessWidget {
   SreachItem({Key? key}) : super(key: key);
 
   final blogPostController = Get.put(BlogPostController());
+  var itemSearch = ''.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +29,15 @@ class SreachItem extends StatelessWidget {
             TextFormField(
               key: const ValueKey("searchItem"),
               textAlign: TextAlign.start,
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.search),
+              decoration: InputDecoration(
+                prefixIcon: IconButton(
+                  onPressed: () {
+                    itemSearch.value =
+                        blogPostController.searchItem.text.trim();
+                    print("${itemSearch.value},oooooooooooooooooooooooooooooo");
+                  },
+                  icon: const Icon(Icons.search),
+                ),
                 labelText: "Search",
               ),
               controller: blogPostController.searchItem,
@@ -42,8 +50,7 @@ class SreachItem extends StatelessWidget {
                       stream: FirebaseFirestore.instance
                           .collection("ShopItems")
                           .where("Categories",
-                              isEqualTo:
-                                  blogPostController.searchItem.text.obs.value)
+                              isEqualTo: itemSearch.value.capitalizeFirst)
                           .snapshots(),
                       builder: (BuildContext context,
                           AsyncSnapshot<QuerySnapshot> snapshot) {

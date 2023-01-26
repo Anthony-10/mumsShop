@@ -67,7 +67,7 @@ class BlogPostController extends GetxController {
     }
   }
 
-  Future<void> imageBlog({
+  Future<void> imageItem({
     required String platform,
   }) async {
     fileURLList.clear();
@@ -87,7 +87,7 @@ class BlogPostController extends GetxController {
         /// Updating the cloudFirebase
         /// postBlog
         for (var element in fileURLList) {
-          postBlog(url: element);
+          postItem(url: element);
         }
 
         itemPrice.clear();
@@ -110,18 +110,18 @@ class BlogPostController extends GetxController {
     }
   }
 
-  Future<void> postBlog({required var url}) async {
+  Future<void> postItem({required var url}) async {
     try {
       await _fireStore.collection("ShopItems").doc(id).set({
         'Url': url,
-        'Categories': category.text,
-        'subCategory': subCategory.text,
-        'Price': itemPrice.text,
-        'Size': size.text,
-        'initialPrice': initialPrice.text,
-        'Amount': amount.text,
+        'Categories': category.text.trim().capitalizeFirst,
+        'subCategory': subCategory.text.trim().capitalizeFirst,
+        'Price': itemPrice.text.trim(),
+        'Size': size.text.trim(),
+        'initialPrice': initialPrice.text.trim(),
+        'Amount': amount.text.trim(),
         'Date': initialDate.value,
-        'Id': id,
+        'Id': id.trim(),
       });
     } on FirebaseException catch (e) {
       Get.snackbar(
@@ -154,7 +154,6 @@ class BlogPostController extends GetxController {
   var items = "".obs;
   var item = ''.obs;
   Future getCategories() async {
-    print("getCategories,8888888888888888888");
     itemsCatego.clear();
     try {
       await FirebaseFirestore.instance
@@ -219,7 +218,6 @@ class BlogPostController extends GetxController {
         'Amount': counter,
         'Date': DateTime.now(),
       });
-      print('${initialDate.value},ggggggggggggggggggg');
     } on FirebaseException catch (e) {
       Get.snackbar(
         "Error Adding Post",
@@ -231,43 +229,10 @@ class BlogPostController extends GetxController {
     }
   }
 
-  var itemsCategories;
-  var itemsPrice;
-  var itemsInitialPrice;
-  var itemsAmount;
-  var itemsUrl;
-  var itemsDate;
-  var itemsId;
-
-  Future<void> getShopItems() async {
-    await FirebaseFirestore.instance
-        .collection("ShopItems")
-        .get()
-        .then((QuerySnapshot querySnapshot) {
-      if (querySnapshot.docs.isNotEmpty) {
-        querySnapshot.docs.forEach((doc) {
-          itemsCategories = doc['Categories'];
-          itemsPrice = doc['Price'];
-          itemsInitialPrice = doc['initialPrice'];
-          itemsAmount = doc['Amount'];
-          itemsUrl = doc['Url'];
-          itemsDate = doc['Date'];
-          itemsId = doc['Id'];
-        });
-      } else {
-        print(
-            'there is no data,llllllllllllllllllllllllllllllllllllllllllllllll');
-      }
-    });
-  }
-
   var itemId = "";
   int exactAmount = 0;
   Future<void> updateItems() async {
-    print(
-        "lllllllllllllllllllllllllllllllllllllll,$itemAmount,$counter$itemUrl,$itemCategories,$itemsPrice,$itemsInitialPrice,$exactAmount,$itemsDate");
     exactAmount = int.parse(itemAmount) - counter;
-    print("ppppppppppppppppppppppppppppppppppppppppppp$exactAmount,$itemId");
     try {
       await _fireStore.collection("ShopItems").doc(itemId).update({
         'Url': itemUrl,
@@ -277,7 +242,6 @@ class BlogPostController extends GetxController {
         'Amount': exactAmount,
         'Date': itemDate,
       });
-      print('${initialDate.value},ggggggggggggggggggg');
     } on FirebaseException catch (e) {
       Get.snackbar(
         "Error Adding Post",

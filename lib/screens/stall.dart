@@ -71,7 +71,7 @@ class _BoughtViewState extends State<BoughtView> {
                                         .data!.docs[index]['Date']
                                         .toDate();
                                     return SizedBox(
-                                      height: 180,
+                                      height: 220,
                                       width: Get.width,
                                       child: SingleChildScrollView(
                                         scrollDirection: Axis.horizontal,
@@ -82,10 +82,6 @@ class _BoughtViewState extends State<BoughtView> {
                                               children: [
                                                 GestureDetector(
                                                   onTap: () async {
-                                                    ///getShopItems Method
-                                                    await blogPostController
-                                                        .getShopItems();
-
                                                     blogPostController.itemUrl =
                                                         snapshot.data
                                                                 ?.docs[index]
@@ -132,8 +128,6 @@ class _BoughtViewState extends State<BoughtView> {
                                                             ?.docs[index]
                                                                 ['Amount']
                                                             .toString();
-                                                    print(
-                                                        ">>>>>>>>>>>>>>${blogPostController.itemAmount}");
                                                     blogPostController
                                                         .itemDate = snapshot
                                                             .data!.docs[index]
@@ -141,16 +135,14 @@ class _BoughtViewState extends State<BoughtView> {
                                                     blogPostController.itemId =
                                                         snapshot.data
                                                             ?.docs[index]['Id'];
-                                                    print(
-                                                        ">>>>>>>>>>>>>>${blogPostController.itemAmount},${blogPostController.itemCategory}");
                                                     showDialog(
                                                         context: context,
                                                         builder: (context) =>
                                                             const AlertDialogs());
                                                   },
                                                   child: SizedBox(
-                                                    height: 120,
-                                                    width: 100,
+                                                    height: 160,
+                                                    width: 140,
                                                     child: Card(
                                                       child: CachedNetworkImage(
                                                         /*cacheManager: buyController
@@ -197,8 +189,8 @@ class _BoughtViewState extends State<BoughtView> {
                                                         context: context,
                                                         builder: (context) =>
                                                             AlertDialog(
-                                                              title:
-                                                                  Text('Edit'),
+                                                              title: const Text(
+                                                                  'Edit'),
                                                               content:
                                                                   TextFormField(
                                                                 key: const ValueKey(
