@@ -201,18 +201,54 @@ class _BoughtViewState extends State<BoughtView> {
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
-                                                      Text(
-                                                        'Categories: ${snapshot.data?.docs[index]['Categories'].toString()}',
-                                                        style: const TextStyle(
-                                                            fontSize: 15),
+                                                      RichText(
+                                                        text:
+                                                            TextSpan(children: [
+                                                          const TextSpan(
+                                                              text:
+                                                                  'Categories: ',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize:
+                                                                      17)),
+                                                          TextSpan(
+                                                              text:
+                                                                  '${snapshot.data?.docs[index]['Categories'].toString()}',
+                                                              style: const TextStyle(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize: 15))
+                                                        ]),
                                                       ),
                                                       const SizedBox(
                                                         height: 10,
                                                       ),
-                                                      Text(
-                                                        'SubCategory: ${snapshot.data?.docs[index]['subCategory'].toString()}',
-                                                        style: const TextStyle(
-                                                            fontSize: 15),
+                                                      RichText(
+                                                        text:
+                                                            TextSpan(children: [
+                                                          const TextSpan(
+                                                            text:
+                                                                'SubCategory: ',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .black,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontSize: 17),
+                                                          ),
+                                                          TextSpan(
+                                                              text:
+                                                                  '${snapshot.data?.docs[index]['subCategory'].toString()}',
+                                                              style: const TextStyle(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize: 15))
+                                                        ]),
                                                       ),
                                                       const SizedBox(
                                                         height: 10,
