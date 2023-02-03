@@ -112,7 +112,7 @@ class _SoldState extends State<Sold> {
                                           child: Row(
                                             children: [
                                               SizedBox(
-                                                height: 160,
+                                                height: 180,
                                                 width: 140,
                                                 child: GestureDetector(
                                                   onTap: () {
