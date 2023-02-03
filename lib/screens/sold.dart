@@ -7,13 +7,22 @@ import 'package:intl/intl.dart';
 import '../components/ImageDialog.dart';
 import '../controller.dart';
 
-class Sold extends StatelessWidget {
+class Sold extends StatefulWidget {
   Sold({Key? key}) : super(key: key);
 
+  @override
+  State<Sold> createState() => _SoldState();
+}
+
+class _SoldState extends State<Sold> {
   final blogPostController = Get.put(BlogPostController());
 
-  final nowsDate = DateTime.now();
-  var dateNow;
+  var todayDate = DateTime.now();
+
+  var monthDate = DateTime.now();
+
+  var dateNow = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -28,48 +37,53 @@ class Sold extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
             ),
-            Row(
+            /* Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 GestureDetector(
                   onTap: () {
-                    /*dateNow =
-                        print('$dateNow,llllllllllll');*/
+                    setState(() {
+                      dateNow = todayDate;
+                      print('$dateNow,llllllllllll');
+                    });
                   },
                   child: Container(
                     height: 40,
                     width: 100,
-                    child: Center(
-                        child: Text(DateFormat('yyyy-MM-dd').format(nowsDate))),
+                    child: const Center(child: Text('Today')),
                     color: Colors.amber,
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    setState(() {
+                      dateNow = monthDate;
+                    });
+                  },
                   child: Container(
                     height: 40,
                     width: 100,
-                    child: Center(
-                        child: Text(DateFormat('yyyy-MM').format(nowsDate))),
+                    child: Center(child: Text('$monthDate')),
                     color: Colors.amber,
                   ),
                 ),
-                /*TextButton(
+                */ /*TextButton(
                     onPressed: () {},
                     child:
                         Text("${DateFormat('yyyy-MM-dd').format(nowsDate)}")),
                 TextButton(
                     onPressed: () {},
-                    child: Text("${DateFormat('yyyy-MM').format(nowsDate)}"))*/
+                    child: Text("${DateFormat('yyyy-MM').format(nowsDate)}"))*/ /*
               ],
-            ),
+            ),*/
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(top: 10, left: 20, bottom: 10),
                 child: StreamBuilder<QuerySnapshot>(
                     stream: FirebaseFirestore.instance
                         .collection("SoldItems")
-                        .where('Date', isLessThanOrEqualTo: DateTime.now())
+                        /* .where('Date', isEqualTo: dateNow)*/
+                        .orderBy('Date', descending: true)
                         .snapshots(),
                     builder: (BuildContext context,
                         AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -88,7 +102,7 @@ class Sold extends StatelessWidget {
                                       .data!.docs[index]['Date']
                                       .toDate();
                                   return SizedBox(
-                                    height: 170,
+                                    height: 240,
                                     width: Get.width,
                                     child: SingleChildScrollView(
                                       scrollDirection: Axis.horizontal,
@@ -98,8 +112,8 @@ class Sold extends StatelessWidget {
                                           child: Row(
                                             children: [
                                               SizedBox(
-                                                height: 120,
-                                                width: 100,
+                                                height: 160,
+                                                width: 140,
                                                 child: GestureDetector(
                                                   onTap: () {
                                                     blogPostController.itemUrl =

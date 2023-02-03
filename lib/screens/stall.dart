@@ -72,7 +72,7 @@ class _BoughtViewState extends State<BoughtView> {
                                         .data!.docs[index]['Date']
                                         .toDate();
                                     return SizedBox(
-                                      height: 220,
+                                      height: 240,
                                       width: Get.width,
                                       child: SingleChildScrollView(
                                         scrollDirection: Axis.horizontal,
@@ -196,101 +196,208 @@ class _BoughtViewState extends State<BoughtView> {
                                                         builder: (context) =>
                                                             const AlertDialogs());
                                                   },
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      RichText(
-                                                        text:
-                                                            TextSpan(children: [
-                                                          const TextSpan(
-                                                              text:
-                                                                  'Categories: ',
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  fontSize:
-                                                                      17)),
-                                                          TextSpan(
-                                                              text:
-                                                                  '${snapshot.data?.docs[index]['Categories'].toString()}',
-                                                              style: const TextStyle(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontSize: 15))
-                                                        ]),
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      RichText(
-                                                        text:
-                                                            TextSpan(children: [
-                                                          const TextSpan(
-                                                            text:
-                                                                'SubCategory: ',
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                fontSize: 17),
-                                                          ),
-                                                          TextSpan(
-                                                              text:
-                                                                  '${snapshot.data?.docs[index]['subCategory'].toString()}',
-                                                              style: const TextStyle(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontSize: 15))
-                                                        ]),
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Text(
-                                                        'InitialPrice: ${snapshot.data?.docs[index]['initialPrice'].toString()}',
-                                                        style: const TextStyle(
-                                                            fontSize: 15),
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Text(
-                                                        'Price: ${snapshot.data?.docs[index]['Price'].toString()}',
-                                                        style: const TextStyle(
-                                                            fontSize: 15),
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Text(
-                                                        'Size: ${snapshot.data?.docs[index]['Size'].toString()}',
-                                                        style: const TextStyle(
-                                                            fontSize: 15),
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Text(
-                                                        'Amount: ${snapshot.data?.docs[index]['Amount'].toString()}',
-                                                        style: const TextStyle(
-                                                            fontSize: 15),
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Text(
-                                                        "Date: ${DateFormat('yyyy-MM-dd KK:mm').format(dateTime)}",
-                                                        style: const TextStyle(
-                                                            fontSize: 15),
-                                                      )
-                                                    ],
+                                                  child: Container(
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        RichText(
+                                                          text: TextSpan(
+                                                              children: [
+                                                                const TextSpan(
+                                                                    text:
+                                                                        'Categories: ',
+                                                                    style: TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        fontSize:
+                                                                            17)),
+                                                                TextSpan(
+                                                                    text:
+                                                                        '${snapshot.data?.docs[index]['Categories'].toString()}',
+                                                                    style: const TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                            15))
+                                                              ]),
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 10,
+                                                        ),
+                                                        RichText(
+                                                          text: TextSpan(
+                                                              children: [
+                                                                const TextSpan(
+                                                                  text:
+                                                                      'SubCategory: ',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontSize:
+                                                                          17),
+                                                                ),
+                                                                TextSpan(
+                                                                    text:
+                                                                        '${snapshot.data?.docs[index]['subCategory'].toString()}',
+                                                                    style: const TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                            15))
+                                                              ]),
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 10,
+                                                        ),
+                                                        RichText(
+                                                          text: TextSpan(
+                                                              children: [
+                                                                const TextSpan(
+                                                                  text:
+                                                                      'InitialPrice: ',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontSize:
+                                                                          17),
+                                                                ),
+                                                                TextSpan(
+                                                                    text:
+                                                                        '${snapshot.data?.docs[index]['initialPrice'].toString()}',
+                                                                    style: const TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                            15))
+                                                              ]),
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 10,
+                                                        ),
+                                                        RichText(
+                                                          text: TextSpan(
+                                                              children: [
+                                                                const TextSpan(
+                                                                  text:
+                                                                      'Price: ',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontSize:
+                                                                          17),
+                                                                ),
+                                                                TextSpan(
+                                                                    text:
+                                                                        '${snapshot.data?.docs[index]['Price'].toString()}',
+                                                                    style: const TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                            15))
+                                                              ]),
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 10,
+                                                        ),
+                                                        RichText(
+                                                          text: TextSpan(
+                                                              children: [
+                                                                const TextSpan(
+                                                                  text:
+                                                                      'Size: ',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontSize:
+                                                                          17),
+                                                                ),
+                                                                TextSpan(
+                                                                    text:
+                                                                        '${snapshot.data?.docs[index]['Size'].toString()}',
+                                                                    style: const TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                            15))
+                                                              ]),
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 10,
+                                                        ),
+                                                        RichText(
+                                                          text: TextSpan(
+                                                              children: [
+                                                                const TextSpan(
+                                                                  text:
+                                                                      'Amount: ',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontSize:
+                                                                          17),
+                                                                ),
+                                                                TextSpan(
+                                                                    text:
+                                                                        '${snapshot.data?.docs[index]['Amount'].toString()}',
+                                                                    style: const TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                            15)),
+                                                              ]),
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 10,
+                                                        ),
+                                                        RichText(
+                                                          text: TextSpan(
+                                                              children: [
+                                                                const TextSpan(
+                                                                  text:
+                                                                      'Date: ',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontSize:
+                                                                          17),
+                                                                ),
+                                                                TextSpan(
+                                                                    text: DateFormat(
+                                                                            'yyyy-MM-dd KK:mm')
+                                                                        .format(
+                                                                            dateTime),
+                                                                    style: const TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                            15)),
+                                                              ]),
+                                                        )
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                                 const SizedBox(

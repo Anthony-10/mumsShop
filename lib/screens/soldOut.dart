@@ -56,7 +56,7 @@ class _SoldOutState extends State<SoldOut> {
                                       .data!.docs[index]['Date']
                                       .toDate();
                                   return SizedBox(
-                                    height: 170,
+                                    height: 240,
                                     width: Get.width,
                                     child: SingleChildScrollView(
                                       scrollDirection: Axis.horizontal,
@@ -66,8 +66,8 @@ class _SoldOutState extends State<SoldOut> {
                                           child: Row(
                                             children: [
                                               SizedBox(
-                                                height: 120,
-                                                width: 100,
+                                                height: 160,
+                                                width: 140,
                                                 child: GestureDetector(
                                                   onTap: () {
                                                     blogPostController.itemUrl =

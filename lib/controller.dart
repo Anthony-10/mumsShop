@@ -182,7 +182,7 @@ class BlogPostController extends GetxController {
   Future<void> categories() async {
     try {
       await _fireStore.collection("Categories").doc().set({
-        'Item': category.text,
+        'Item': category.text.trim().capitalizeFirst,
       });
     } on FirebaseException catch (e) {
       Get.snackbar(

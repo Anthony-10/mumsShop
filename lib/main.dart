@@ -5,7 +5,6 @@ import 'package:untitled6/components/bottomNavigation.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
   runApp(const MyApp());
 }
 
